@@ -13,7 +13,7 @@ const databaseLibrary = {
           
     },
 
-    queryDatabase(connection, queryString){
+    async queryDatabase(connection, queryString){//Not Working
 
         connection.connect((err) => {
             if (err) throw err;
@@ -27,19 +27,32 @@ const databaseLibrary = {
           });
     },
 
-    createUser(connection, data){// Convert Data to String at Some Point
+    async createUser(connection, data){// Convert Data to String at Some Point
          connection.connect(
-            (err) => {
+            async (err) => {
                 if (err) throw err;
-                queryString = "INSERT INTO user VALUES(" + data.password + " ," + data.email + 
-                "," + data.number + "," + data.username + ");"
-                console.log(queryString) 
-                return connection.query(queryString, 
-                    (err, result) => {
-                        if (err) throw err;
-                        return result;
-                    }   
-                );
+
+                try {
+                    const sql = 'INSERT INTO `users`(`name`, `age`) VALUES (?, ?), (?,?)';
+                    const values = ['Josh', 19, 'Page', 45];
+                  
+                    const [result, fields] = await connection.execute({
+                      sql,
+                      values,
+                      // ... other options
+                    });
+                  
+                    console.log(result);
+                    console.log(fields);
+                  } catch (err) {
+                    console.log(err);
+                  }
+
+
+
+
+                
+                
             }
         );
     }
