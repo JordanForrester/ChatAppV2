@@ -33,17 +33,27 @@ const databaseLibrary = {
                 if (err) throw err;
 
                 try {
-                    const sql = 'INSERT INTO `users`(`name`, `age`) VALUES (?, ?), (?,?)';
-                    const values = ['Josh', 19, 'Page', 45];
+                    const sql = 'INSERT INTO `user`(`pword`, `email`, `phonenumber`, `yearofbirth`, `username`) VALUES (?, ?, ?, 9, ?)';
+                    const values = [data.password, data.email, data.number, data.username];
+
                   
-                    const [result, fields] = await connection.execute({
+                    result = await connection.execute(
                       sql,
                       values,
+                      (err, results) =>{
+                        if (err) {
+                          console.error('Error inserting data: ', err);
+                        } else {
+                          console.log('Inserted row with ID: ', results);
+                        }
+
+
+                      },
                       // ... other options
-                    });
+                    );
                   
                     console.log(result);
-                    console.log(fields);
+                    
                   } catch (err) {
                     console.log(err);
                   }
