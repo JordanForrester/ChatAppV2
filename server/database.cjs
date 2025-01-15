@@ -33,8 +33,8 @@ const databaseLibrary = {
                 if (err) throw err;
 
                 try {
-                    const sql = 'INSERT INTO `user`(`pword`, `email`, `phonenumber`, `yearofbirth`, `username`) VALUES (?, ?, ?, 9, ?)';
-                    const values = [data.password, data.email, data.number, data.username];
+                    const sql = 'INSERT INTO `user`(`pword`, `email`, `phonenumber`, `yearofbirth`, `username`) VALUES (?, ?, ?, ?, ?)';
+                    const values = [data.password, data.email, data.number, data.birthyear, data.username];
 
                   
                     result = await connection.execute(

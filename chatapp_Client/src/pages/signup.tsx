@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+function verifyFormat(){// Makes sure the data is correct for storage
+    const emailRegex = new RegExp('/^(\w*@\w*.\w{3})$/gm', 'x'); 
+    const stringLimiterRegex = new RegExp('/^\w{1,30}$/gm', 'x');
+    const phoneNumberRegex = new RegExp('/^\w{1,30}$/gm', 'x'); 
+}
+
 function SignUp(){
         const [username, setUsername] = useState('');
         const [password, setPassword] = useState('');
         const [passwordTwo, setPasswordConfirm] = useState('');
+        const [birthyear, setBirthYear] = useState('');
         const [email, setEmail] = useState('');
         const [number, setNumber] = useState('');
 
@@ -14,6 +21,7 @@ function SignUp(){
                 password : password.toString(),
                 email : email.toString(),
                 number : number.toString(),
+                birthyear: birthyear.toString(),
             });//No magic strings
 
 
@@ -45,6 +53,9 @@ function SignUp(){
                 case 'numberField':
                     setNumber(dataValue);
                     break;
+                case 'birthYear':
+                    setBirthYear(dataValue);
+                    break;
             }
             
         }
@@ -65,6 +76,9 @@ function SignUp(){
                     <input id='passwordFieldTwo' className="uk-input uk-margin-small" type="password" placeholder="Confirm Password" aria-label="Input" value={passwordTwo} onChange={handleChange}></input>
 
                     <input id='numberField' className="uk-input uk-margin-small" type="text" placeholder="Enter your phone number(optional)" aria-label="Input" value={number} onChange={handleChange}></input>
+
+                    <input id='birthYear' className="uk-input uk-margin-small" type="text" placeholder="Enter your birth year" aria-label="Input" value={birthyear} onChange={handleChange}></input>
+
 
                     <button className="uk-button uk-margin-top uk-button-primary" onClick={submitData}>Create Account</button>
                 </fieldset>

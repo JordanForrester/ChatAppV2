@@ -17,8 +17,6 @@ app.post('/', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    
-    
     res.send(
         dbAPI.createUser(dbAPI.createConnection(), req.body)
     );
