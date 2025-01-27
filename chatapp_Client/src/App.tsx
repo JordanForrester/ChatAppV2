@@ -1,4 +1,10 @@
+
 import 'uikit/dist/css/uikit.css'
+import  'uikit/dist/js/uikit-icons.min.js'
+
+
+
+
 
 import './App.css'
 
